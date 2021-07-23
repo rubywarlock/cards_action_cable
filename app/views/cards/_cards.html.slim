@@ -1,0 +1,48 @@
+.card-list#card-list
+  - @cards.each do |card|
+
+    .card-block id="card-id-#{card.id}"
+      .card
+
+        .text
+
+          = form_with(url: quest_results_path, model: card, data: { remote: true }) do |f|
+            = f.hidden_field :card_id, value: card.id
+            div class="field variant"
+              = f.label :variant
+              = f.text_field :variant, value: ""
+              = f.submit "check"
+
+          .translate class="original" id="original-id-#{card.id}"
+            |Original
+            div class="translate-text" id="original-text-id-#{card.id}"
+              = card.words_pair.original_text
+
+          .translate class="translate-hidden" id="translate-id-#{card.id}"
+            |Translate
+            div class="translate-text" id="translate-text-id-#{card.id}"
+              |HIDDEN
+
+          = form_with(url: apply_path, model: card, data: {remote: true }, class: "result-status-form" ) do |f|
+            = f.hidden_field :card_id, value: card.id
+            = f.label :result_status, style: "display: inline-block"
+            = f.check_box :result_status
+            = f.submit "APPLY"
+
+        .info
+          |level:
+          '
+          = card.level
+
+        - if card.wrongs_count.to_i > 0
+          .info
+            |wrongs:
+            '
+            = card.wrongs_count
+
+        .actions
+
+
+          .action = link_to 'Show', card
+          .action = link_to 'Edit', edit_card_path(card)
+          .action = link_to 'Destroy', card, method: :delete, data: { confirm: 'Are you sure?' }

@@ -1,0 +1,31 @@
+= render "header"
+
+.card-list
+  - @cards.each do |card|
+
+    .card-block
+      .card
+
+        .text
+          .original = card.words_pair.original_text
+          .translate = card.words_pair.translate
+
+        .info
+          |group:
+          '
+          = card.level
+
+        - if card.wrongs_count.to_i > 0
+          .info
+            |wrongs:
+            '
+            = card.wrongs_count
+
+        .actions
+          .action = link_to 'Show', card
+          .action = link_to 'Edit', edit_card_path(card)
+          .action = link_to 'Destroy', card, method: :delete, data: { confirm: 'Are you sure?' }
+
+br
+
+= link_to 'New Card', new_card_path

@@ -1,0 +1,25 @@
+= form_for(@card) do |form|
+  - if @card.errors.any?
+    div id="error_explanation"
+      h2
+        = pluralize(@card.errors.count, "error")
+        |prohibited this card from being saved:
+
+      ul
+        - @card.errors.each do |error|
+          li
+            = error.full_message
+
+  = form.fields_for :words_pair, @words_pair do |words_pair_fields|
+    div class="field"
+      = words_pair_fields.label :original_text
+      = words_pair_fields.text_field :original_text
+
+    div class="field"
+      = words_pair_fields.label :translate
+      = words_pair_fields.text_field :translate
+
+  div class="actions"
+    = form.submit
+
+

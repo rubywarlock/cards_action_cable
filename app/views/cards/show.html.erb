@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Wrongs count:</strong>
+  <%= @card.wrongs_count %>
+</p>
+
+<p>
+  <strong>Group:</strong>
+  <%= @card.level %>
+</p>
+
+<%= link_to 'Edit', edit_card_path(@card) %> |
+<%= link_to 'Back', cards_path %> |
+<%= link_to 'Destroy', @card, method: :delete, data: { confirm: 'Are you sure?' } %>

@@ -1,0 +1,83 @@
+.header-links {
+  a {
+    text-decoration: unset;
+
+    &:hover {
+      background: unset;
+      color: #68c3d9;
+      text-shadow: 1px 1px 1px #ffffff;
+    }
+  }
+}
+
+.card {
+  margin: 5px;
+  padding: 10px;
+
+  border: 1px solid #F2F2F2;
+
+  .info, .actions {
+    margin: 5px;
+    padding: 5px;
+  }
+
+  .actions {
+
+    .action {
+      background: #ccedf2;
+      margin: 5px;
+      padding: 5px;
+
+      a {
+        text-decoration: unset;
+
+        &:hover {
+          background: unset;
+          color: #326064;
+          text-shadow: 1px 1px 1px #ffffff;
+        }
+      }
+    }
+  }
+}
+
+.card-block {
+  padding: 1px;
+  box-shadow: 1px 1px 3px #d9d9d9;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.card, .info, .actions, .action, .translate-text {
+  border-radius: 5px;
+}
+
+.info {
+  border: 1px solid #DADADA;
+}
+
+.variant {
+
+  label {
+    padding-right: 10px;
+  }
+
+  input {
+    margin-right: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+}
+
+.translate {
+  .translate-text {
+    border: 1px solid #F2F2F2;
+    margin: 5px;
+    padding: 5px;
+    width: 200px;
+  }
+}
+
+.result-status-form, .translate, .translate-text, .variant, .action, .variant label {
+  display: inline-block;
+}
