@@ -1,24 +1,23 @@
-# README
+# CARD AND ACTION CABLE
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+###Setup
 
-Things you may want to cover:
+* `$ rvm install 2.6.6`
+* `$ rvm 2.6.6@rails6`
+* `$ gem install rails -v 6.1.4`
+* `$ bundle install`
+* `$ rails db:migrate`
+* `$ rails s`
 
-* Ruby version
+##### Страница localhost:3000/cards
+выводится список карт
 
-* System dependencies
+##### Страница localhost:3000/quests
+на данной странице происходит опрос по картам.
+поле вариант для варианта перевода.
+после ввода варианта нужно нажать кнопку `check`
+сервер проверит вариант. Если вариант и откроет поле перевода.
+после чего пользователь должен нажать `checkbox` если вариант совпадает с переводом.
+После провденых выше шагов нужно нажать кнопку `apply`, сервер по правильности перевода установит
+следующий интервал для отображения карты и запустит фоновую задачу по данному интервалу.
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
