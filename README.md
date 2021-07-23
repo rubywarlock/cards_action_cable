@@ -1,10 +1,11 @@
 # CARD AND ACTION CABLE
 
-###Setup
+### Setup
 
 * `$ rvm install 2.6.6`
 * `$ rvm 2.6.6@rails6`
 * `$ gem install rails -v 6.1.4`
+* `$ gem install sidekiq`
 * `$ bundle install`
 * `$ rails db:migrate`
 * `$ rails s`

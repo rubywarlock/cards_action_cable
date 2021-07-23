@@ -50,7 +50,7 @@ module CardsQuestsConcern
     private
 
     def cards_list
-      @cards = Card.all.map do |card|
+      @cards = Card.where(level: "always").map do |card|
         card
       end
     end
