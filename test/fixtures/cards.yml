@@ -2,8 +2,8 @@
 
 one:
   wrongs_count: 1
-  group: one
+  level: "0"
 
 two:
   wrongs_count: 1
-  group: two
+  level: "1"

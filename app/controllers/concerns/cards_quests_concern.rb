@@ -20,7 +20,9 @@ module CardsQuestsConcern
     def apply
       @card = Card.find(apply_params[:card_id])
 
-      result = apply_params[:result_status]
+      CardsJob.perform_later('destroy', @card.id)
+
+      result = apply_params[:result_status] == "1" ? true : false
 
       if result == true
         @card.up
@@ -34,15 +36,17 @@ module CardsQuestsConcern
       end
 
       if !@card.never?
-        time_interval = Card.levels[@card.level].scan(/\d{1,2}\w{1,3}/).first
 
-        if !time_interval.blank?
-          time = time_interval[0]
-          unit = @card.to_time_unit(time_interval[1])
+        time_duration = @card.to_time_duration
+
+        if !time_duration.blank?
+          next_time = DateTime.current + time_duration
+
+          @card.next_time = next_time
+          @card.save
+
+          CardsJob.set(wait: time_duration).perform_later('show_card_by_time', @card)
         end
-
-        CardsJob.perform_later('destroy', @card.id)
-        CardsJob.set(wait: eval("#{time}.#{unit}")).perform_later('show_card_by_time', @card)
       end
 
     end
@@ -50,7 +54,7 @@ module CardsQuestsConcern
     private
 
     def cards_list
-      @cards = Card.where(level: "always").map do |card|
+      @cards = Card.where("(level = ? OR next_time <= ?) AND level <> ?", "always", DateTime.current, "never").map do |card|
         card
       end
     end

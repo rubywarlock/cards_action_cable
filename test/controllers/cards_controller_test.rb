@@ -70,4 +70,20 @@ class CardsControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to cards_url
   end
+
+  test "apply" do
+    patch apply_url(@card), params: {
+      card: {
+        card_id: @card.id, result_status: "0"
+      }
+    }
+
+    assert_equal "1", @card.level
+
+    @card.reload
+
+    assert_equal "2", @card.level
+
+    assert_response :success
+  end
 end

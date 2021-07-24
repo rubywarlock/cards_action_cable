@@ -43,18 +43,25 @@ class Card < ApplicationRecord
     self.level == "11"
   end
 
-  def to_time_unit(unit)
-    case unit
-    when "s"
-      "second"
-    when "h"
-      "hour"
-    when "min"
-      "minute"
-    when "d"
-      "day"
-    when "m"
-      "month"
-    end
+  def to_time_duration
+    time_interval = Card.levels[self.level].scan(/(\d{1,2})(\w{1,3})/).first
+    time = time_interval[0]
+    raw_unit = time_interval[1]
+
+    time_unit =
+      case raw_unit
+      when "s"
+        "second"
+      when "h"
+        "hour"
+      when "min"
+        "minute"
+      when "d"
+        "day"
+      when "m"
+        "month"
+      end
+
+    eval("#{time}.#{time_unit}")
   end
 end
