@@ -20,7 +20,8 @@ class CardsJob < ApplicationJob
   end
 
   def add_card_row(card)
-    ActionCable.server.broadcast "cards_adding", { card: render_card(card) }
+    #.card-block id="card-id-#{card.id}"
+    ActionCable.server.broadcast "cards_adding", { card: render_card(card), card_id: card.id }
   end
 
   private

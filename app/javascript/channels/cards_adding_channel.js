@@ -8,17 +8,19 @@ consumer.subscriptions.create({ channel: "CardsAddingChannel" }, {
   },
 
   appendRow(data) {
-    const html = this.createRow(data['card'])
+    const html = this.createRow(data)
     const element = document.getElementById("card-list")
 
     element.prepend(html)
   },
 
   createRow(data) {
-    var dom = document.createElement('div')
+    var card_block = document.createElement('div')
 
-    dom.innerHTML = data
+    card_block.className = 'card-block'
+    card_block.id = 'card-id-' + data['card_id']
+    card_block.innerHTML = data['card']
 
-    return dom
+    return card_block
   }
 })
